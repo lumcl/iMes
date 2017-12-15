@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FCKeditor - Sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<script type="text/javascript" src="./fckeditor.js"></script>
+	<script language="javascript">
+		// 获取编辑器内容
+		function getContent() {
+			var oEditor = FCKeditorAPI.GetInstance('myContent');
+			alert('内容为：\n'+ oEditor.GetXHTML());
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<h1>
+		FCKeditor - JavaScript - Sample 1
+	</h1>
+	<div>
+		This sample displays a normal HTML form with an FCKeditor with full features enabled.
+	</div>
+	<hr />
+	<form onsubmit="return getContent();">
+		<script type="text/javascript">
+<!--
+// Automatically calculates the editor base path based on the _samples directory.
+// This is usefull only for these samples. A real application should use something like this:
+// oFCKeditor.BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
+var sBasePath = document.location.pathname.substring(0,document.location.pathname.lastIndexOf('sample.html')) ;
+
+var oFCKeditor = new FCKeditor( 'myContent' ) ;
+oFCKeditor.BasePath	= sBasePath ;
+//oFCKeditor.BasePath = '/fckeditor/'; 正式应用中应该设置此路径
+oFCKeditor.Height	= 300 ;
+oFCKeditor.Value	= '<p>This is some <strong>sample text<\/strong>. You are using <a href="http://www.fckeditor.net/">FCKeditor<\/a>.<\/p>' ;
+oFCKeditor.Create() ;
+//-->
+		</script>
+		<br />
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

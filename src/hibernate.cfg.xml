@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+  <!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		
+		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/itest</property>
+
+		<!--是否将运行产生的sql语句输出到日志 -->
+		<property name="hibernate.show_sql">True</property>
+
+		<!-- property name="hibernate.use_out_join">True</property-->
+
+		<!--事务管理类 -->
+		<!--property name="hibernate.transaction.factory_class">net.sf.hibernate.transaction.JDBCTransactionFactory</property-->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<mapping resource="imes/test/Student.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

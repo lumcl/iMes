@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!--类和表之间的关联 -->
+    <class name="imes.test.Student" table="STUDENT">
+		<!--类对象的主键和表的主键关联 -->
+		<id name="id" type="integer">
+			<column name="id" />
+			<!-- 指明主键的自增长类型 -->
+			<generator class="sequence">
+				<param name="sequence">STUDENT_SEQ</param>
+			</generator>
+		</id>
+		<!-- 以下为普通字段的关系 -->
+		<property name="name" type="string" column="name" />
+		<property name="age" type="integer" column="age" />
+    </class>
+    
+</hibernate-mapping>

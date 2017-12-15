@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>iMes Manufacturing System</title>
+</head>
+<body>
+	<h1>iMes User Administration</h1>
+	<form action="register" method="post">
+		<fieldset>
+			<legend>用戶註冊</legend>
+			<table>
+				<tr>
+					<th>用戶帳戶 :</th>
+					<td><input type="text" name="uid" /></td>
+				</tr>
+				<tr>
+					<th>用戶姓名 :</th>
+					<td><input type="text" name="name" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="action" value="create"/>			
+			<p><input type="submit"/></p>
+		</fieldset>
+	</form>
+	
+	<form action="register" method="post">
+		<fieldset>
+			<legend>重設密碼</legend>
+			<table>
+				<tr>
+					<th>用戶帳戶 :</th>
+					<td><input type="text" name="uid" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="action" value="resetPassword"/>			
+			<p><input type="submit"/></p>
+		</fieldset>
+	</form>
+	
+</body>
+</html>

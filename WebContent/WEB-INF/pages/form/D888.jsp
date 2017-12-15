@@ -1,0 +1,174 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/pages/layout/header.jsp" />
+
+<script type="text/javascript" src="/iMes/javascript/D888.js"></script>
+
+<div id="tabs">
+ <ul>
+  <li><a href="#tab-1">出厂单</a></li>
+ </ul>
+
+ <div id="tab-1">
+  <form action="/iMes/D888/LIST" method="post">
+   <div id="icon">
+    <button type="button" onclick="this.disabled=true;this.form.submit();">
+     <img src="/iMes/stylesheet/icons/S_B_EXEC.GIF" alt="查詢" />
+    </button>
+    <button type="reset">
+     <img src="/iMes/stylesheet/icons/S_F_REDO.GIF" alt="還原" />
+    </button>
+    <c:if test="${kz_user == 'Y'}">
+    <button id="create" type="button" onclick="create();">
+     <img src="/iMes/stylesheet/icons/S_B_INSR.GIF" alt="建立出厂单" />
+    </button>
+    </c:if>
+   </div>
+
+   <table>
+    <tr>
+     <th></th>
+     <th>公司</th>
+     <th>單號</th>
+     <th>日期</th>
+     <th>類型</th>
+     <th>申請人</th>
+     <th>結果</th>
+     <th>狀態</th>
+    </tr>
+    <tr>
+     <th>從</th>
+     <th><input type="text" name="STRGSDM" value="${param.STRGSDM}" size="5"></th>
+     <th><input type="text" name="STRBDBH" value="${param.STRBDBH}"></th>
+     <th><input type="text" name="STRBDRQ" value="${param.STRBDRQ}" size="9"></th>
+     <th><select name="CCLX">
+        <option value="" <c:if test="${(param.CCLX != '成品出廠') || (param.CCLX != 'SW樣品出廠')|| (param.CCLX != 'LINEAR樣品出廠') || (param.CCLX != '品保樣品出廠') || (param.CCLX != '材料樣品出廠')|| (param.CCLX != '材料調撥出廠')|| (param.CCLX != '固定資產出廠')|| (param.CCLX != '材料退貨出廠')|| (param.CCLX != '材料超交出廠')|| (param.CCLX != '資產報廢出廠')|| (param.CCLX != '資產異動出廠')|| (param.CCLX != '資產借出出廠')|| (param.CCLX != '設備校驗出廠')|| (param.CCLX != '設備外修出廠')|| (param.CCLX != '會辦賬務出廠')|| (param.CCLX != '雜項物品出廠')|| (param.CCLX != '其它物品出廠')|| (param.CCLX != '其他出廠')}" >selected="selected"</c:if>></option>
+        <option value="成品出廠" <c:if test="${param.CCLX == '成品出廠'}" >selected="selected"</c:if>>成品出廠</option>
+        <option value="SW樣品出廠" <c:if test="${param.CCLX == 'SW樣品出廠'}">selected="selected"</c:if>>SW樣品出廠</option>
+        <option value="LINEAR樣品出廠" <c:if test="${param.CCLX == 'LINEAR樣品出廠'}">selected="selected"</c:if>>LINEAR樣品出廠</option>
+        <option value="材料樣品出廠" <c:if test="${param.CCLX == '材料樣品出廠'}">selected="selected"</c:if>>材料樣品出廠</option>
+        <option value="品保樣品出廠" <c:if test="${param.CCLX == '品保樣品出廠'}">selected="selected"</c:if>>品保樣品出廠</option>
+        <option value="安规樣品出廠" <c:if test="${param.CCLX == '安规樣品出廠'}">selected="selected"</c:if>>安规樣品出廠</option>
+        <option value="材料調撥出廠" <c:if test="${param.CCLX == '材料調撥出廠'}">selected="selected"</c:if>>材料調撥出廠</option>
+        <option value="固定資產出廠" <c:if test="${param.CCLX == '固定資產出廠'}">selected="selected"</c:if>>固定資產出廠</option>
+        <option value="材料退貨出廠" <c:if test="${param.CCLX == '材料退貨出廠'}">selected="selected"</c:if>>材料退貨出廠</option>
+        <option value="材料超交出廠" <c:if test="${param.CCLX == '材料超交出廠'}">selected="selected"</c:if>>材料超交出廠</option>
+        <option value="資產報廢出廠" <c:if test="${param.CCLX == '資產報廢出廠'}">selected="selected"</c:if>>資產報廢出廠</option>
+        <option value="資產異動出廠" <c:if test="${param.CCLX == '資產異動出廠'}">selected="selected"</c:if>>資產異動出廠</option>
+        <option value="資產借出出廠" <c:if test="${param.CCLX == '資產借出出廠'}">selected="selected"</c:if>>資產借出出廠</option>
+        <option value="設備校驗出廠" <c:if test="${param.CCLX == '設備校驗出廠'}">selected="selected"</c:if>>設備校驗出廠</option>
+        <option value="設備外修出廠" <c:if test="${param.CCLX == '設備外修出廠'}">selected="selected"</c:if>>設備外修出廠</option>
+        <option value="會辦賬務出廠" <c:if test="${param.CCLX == '會辦賬務出廠'}">selected="selected"</c:if>>會辦賬務出廠</option>
+        <option value="雜項物品出廠" <c:if test="${param.CCLX == '雜項物品出廠'}">selected="selected"</c:if>>雜項物品出廠</option>
+        <option value="下腳料出廠" <c:if test="${param.CCLX == '下腳料出廠'}">selected="selected"</c:if>>下腳料出廠</option>
+        <option value="下腳料出售出廠" <c:if test="${param.CCLX == '下腳料出售出廠'}">selected="selected"</c:if>>下腳料出售出廠</option>
+        <option value="其它物品出廠" <c:if test="${param.CCLX == '其它物品出廠'}">selected="selected"</c:if>>其它物品出廠</option>
+        <option value="其他出廠" <c:if test="${param.CCLX == '其他出廠'}" >selected="selected"</c:if>>其他出廠</option>
+      </select></th>
+     <th><input type="text" name="SQYH" value="${param.SQYH}"></th>
+     <th><select name="BDJG">
+        <option value="" <c:if test="${(param.BDJG == '') || (empty param.BDJG)}" >selected="selected"</c:if>>ALL</option>
+        <option value="OTHER" <c:if test="${(param.BDJG != 'Y') && (param.BDJG != 'N') && (param.BDJG != '') && (!empty param.BDJG)}" >selected="selected"</c:if>>未簽核</option>
+        <option value="Y" <c:if test="${param.BDJG == 'Y'}" >selected="selected"</c:if>>核准</option>
+        <option value="N" <c:if test="${param.BDJG == 'N'}" >selected="selected"</c:if>>退單/作廢</option>
+      </select></th>
+     <th><select name="BDZT">
+        <option value="" <c:if test="${param.BDZT == ''}" >selected="selected"</c:if>>ALL</option>
+        <option value="OTHER" <c:if test="${(param.BDZT != '0') && (param.BDZT != 'X') && (param.BDZT != '') && (!empty param.BDZT)}" >selected="selected"</c:if>>流程未啟動</option>
+        <option value="0" <c:if test="${param.BDZT == '0'}" >selected="selected"</c:if>>簽核中</option>
+        <option value="X" <c:if test="${param.BDZT == 'X'}" >selected="selected"</c:if>>完成</option>
+      </select></th>
+    </tr>
+    <tr>
+     <th>到</th>
+     <th><input type="text" name="ENDGSDM" value="${param.ENDGSDM}" size="5"></th>
+     <th><input type="text" name="ENDBDBH" value="${param.ENDBDBH}"></th>
+     <th><input type="text" name="ENDBDRQ" value="${param.ENDBDRQ}" size="9"></th>
+     <th></th>
+     <th></th>
+     <th></th>
+     <th></th>
+    </tr>
+   </table>
+  </form>
+
+  <c:if test="${pageContext.request.method=='POST'}">
+   <div id="icon">
+    <button type="button" onclick="$.toExcel('#D888HList')">
+     <img src="/iMes/stylesheet/icons/S_X__XLS.GIF" alt="Excel" />
+    </button>
+    <a href="/iMes/D888/EXPORTEXCEL?SQL=${D888sqlrst}">导出Excel</a>
+   </div>
+   <table id="D888HList">
+    <thead>
+     <tr>
+      <th></th>
+      <th>公司</th>
+      <th>單號</th>
+      <th>日期</th>
+      <th>結果</th>
+      <th>狀態</th>
+      <th>申請人</th>
+      <th>出廠類型</th>
+      <th>部門名稱</th>
+      <th>文件屬性</th>
+      <th>打印</th>
+     </tr>
+    </thead>
+    <tbody>
+     <c:forEach var="e" items="${list}">
+      <tr>
+       <td><button type="button" onclick="location.href='/iMes/${e.BDDM}/EDIT?GSDM=${e.GSDM}&BDDM=${e.BDDM}&BDBH=${e.BDBH}'">
+         <img src="/iMes/stylesheet/icons/S_B_OVIW.GIF" alt="" />
+        </button><button type="button" onclick="location.href='/iMes/${e.BDDM}/READ?GSDM=${e.GSDM}&BDDM=${e.BDDM}&BDBH=${e.BDBH}'">
+         <img src="/iMes/stylesheet/icons/S_B_OVIW.GIF" alt="" />
+        </button></td>
+       <td>${e.GSDM}</td>
+       <td>${e.BDBH}</td>
+       <td>${e.BDRQ}</td>
+       <c:choose>
+       <c:when test="${e.BDJG == 'Y'}">
+       <td>核准</td>
+       </c:when>
+       <c:when test="${e.BDJG == 'N'}">
+       <td>退單/作廢</td>
+       </c:when>
+	   <c:otherwise>
+       <td>未簽核</td>
+	   </c:otherwise>
+       </c:choose>
+       <c:choose>
+       <c:when test="${e.BDZT == '0'}">
+       <td>簽核中</td>
+       </c:when>
+       <c:when test="${e.BDZT == 'X'}">
+       <td>完成</td>
+       </c:when>
+	   <c:otherwise>
+       <td>流程未啟動</td>
+	   </c:otherwise>
+	   </c:choose>
+       <td>${e.SQYH}</td>
+       <td>${e.CCLX}</td>
+       <td>${e.BMMC}</td>
+       <td>${e.WJSX}</td>
+       <c:choose>
+       <c:when test="${e.DYZT == '1'}">
+       <td>已经打印</td>
+       </c:when>
+	   <c:otherwise>
+       <td>未打印</td>
+	   </c:otherwise>
+	   </c:choose>
+      </tr>
+     </c:forEach>
+    </tbody>
+   </table>
+  </c:if>
+
+ </div>
+
+</div>
+
+<jsp:include page="/WEB-INF/pages/layout/footer.jsp" />
