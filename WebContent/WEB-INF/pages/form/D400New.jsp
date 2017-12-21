@@ -34,6 +34,7 @@
         <option value="L300" selected="selected">L300 東莞立德</option>
         <option value="L400">L400 江蘇領先</option>
         <option value="L921">L921 日本立德</option>
+        <option value="L100">L100 台湾立德</option>
         <option value="L111">L111 菲律宾立德</option>
       </select></td>
       <th>簽呈類型<br />DocType</th>

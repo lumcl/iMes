@@ -152,6 +152,7 @@ function PrintPage()
         <option value="L300" <c:if test="${D400.GSDM == 'L300'}">selected="selected"</c:if>>L300 東莞立德</option>
         <option value="L400" <c:if test="${D400.GSDM == 'L400'}">selected="selected"</c:if>>L400 江蘇領先</option>
         <option value="L921" <c:if test="${D400.GSDM == 'L921'}">selected="selected"</c:if>>L921 日本立德</option>
+        <option value="L111" <c:if test="${D400.GSDM == 'L100'}">selected="selected"</c:if>>L100 台湾立德</option>
         <option value="L111" <c:if test="${D400.GSDM == 'L111'}">selected="selected"</c:if>>L111 菲律宾立德</option>
       </select></td>
       <th>簽呈類型<br />DocType</th>
